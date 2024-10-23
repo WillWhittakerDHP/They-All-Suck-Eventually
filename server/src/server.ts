@@ -4,8 +4,8 @@ dotenv.config();
 
 // Import the routes
 import routes from './routes/index.js';
-import { parse } from 'path';
-//!What is that argument/partameter for "parse"
+// import { parse } from 'path';
+//!What is that argument/parameter for "parse"
 
 const app = express();
 
