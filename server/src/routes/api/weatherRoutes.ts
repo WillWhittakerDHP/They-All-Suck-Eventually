@@ -1,49 +1,32 @@
 import { Router, type Request, type Response } from 'express';
-const router = Router();
-
 // import HistoryService from '../../service/historyService.js';
-// import WeatherService from '../../service/weatherService.js';
+import WeatherService from '../../service/weatherService.js';
+
+const router = Router();
 
 // TODO: POST Request with city name to retrieve weather data
 //23/mod/ser/src/rout/tiproutes
 router.post('/', (req: Request, res: Response) => {
-  // // This API route ("/api/tips") is a POST Route for a new UX/UI tip
-  // router.post('/', async (req: Request, res: Response) => {
-  //   const { username, topic, tip } = req.body;
-  //   if (req.body) {
-  //     await TipService.addTip(username, topic, tip);
-  //     res.json('Tip added successfully');
-  //   } else {
-  //     res.send('Error in adding tip');
-  //   }
-  // });
-  // TODO: GET weather data from city name
-    //router.get('/history', async (req: Request, res: Response) => {});
-//     // This API route ("/api/tips") is a GET Route for retrieving all the tips
-    // router.get('/', async (req: Request, res: Response) => {
-    //   console.info(`${req.method} request received for tips`);
-    //   const data = await TipService.getTips();
-    //   res.json(data);
-    // });
-  // TODO: save city to search history
-    //router.delete('/history/:id', async (req: Request, res: Response) => {});
+  const { cityName } = req.body;
+  if (req.body) {
+    await WeatherService.getWeatherForCity(cityName);
+    res.json('City request successful');
+  } else {
+    res.send(`Error requesting city`);
+  }
 });
 
-// This API route ("/api/tips") is a GET Route for retrieving all the tips
-router.get('/', async (req: Request, res: Response) => {
-  console.info(`${req.method} request received for tips`);
-  const data = await TipService.getTips();
-  res.json(data);
-});
+// TODO: GET weather data from city name
+  router.get('/', async (req: Request, res: Response) => {
+    const { cityName } = req.body;
+    const weatherData = await WeatherService.getWeatherForCity(cityName);
+    res.json(weatherData)});
+
+// TODO: save city to search history
+  router.delete('/history/:id', async (req: Request, res: Response) => {});
 
 // TODO: GET search history
 router.get('/history', async (req: Request, res: Response) => {});
-  // This API route ("/api/tips") is a GET Route for retrieving all the tips
-    // router.get('/', async (req: Request, res: Response) => {
-    //   console.info(`${req.method} request received for tips`);
-    //   const data = await TipService.getTips();
-    //   res.json(data);
-    // });
 
 // TODO: DELETE city from search history
 router.delete('/history/:id', async (req: Request, res: Response) => {});

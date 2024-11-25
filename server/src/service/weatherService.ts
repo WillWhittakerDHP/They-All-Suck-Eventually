@@ -4,7 +4,7 @@ dotenv.config();
 
 // // TODO: Define an interface for the Coordinates object
 interface Coordinates {
-  name: string,
+  cityName: string,
   lat: number,
   lon: number,
   country: string, 
@@ -36,7 +36,7 @@ class Weather {
   
 // // TODO: Complete the WeatherService class
 class WeatherService {
-  // // TODO: Define the baseURL, API key, and city name properties=
+  // // TODO: Define the baseURL, API key, and city cityName properties=
   private baseURL?: string;
   private apiKey?: string;
   cityName: string;
@@ -67,7 +67,7 @@ class WeatherService {
   private destructureLocationData(rawLocationData: Coordinates) {
     if (!rawLocationData) {throw new Error(`Try again, goofball. There's no city to be found`)}
     const destructuredLocationData: Coordinates = {
-      name: rawLocationData.name,
+      cityName: rawLocationData.cityName,
       lat: rawLocationData.lat,
       lon: rawLocationData.lon,
       country: rawLocationData.country, 
