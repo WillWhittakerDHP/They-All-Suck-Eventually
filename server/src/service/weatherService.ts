@@ -140,6 +140,7 @@ class WeatherService {
     try{
       this.cityName = city;
       const coordinates = await this.fetchAndDestructureLocationData();
+      console.log(coordinates);
       const weatherData = await this.fetchWeatherData(coordinates) as any[];
       const currentWeather = this.parseCurrentWeather(weatherData);
       const forecastArray = this.buildForecastArray(currentWeather, weatherData);
