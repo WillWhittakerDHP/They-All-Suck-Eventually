@@ -5,17 +5,13 @@ import WeatherService from '../../service/weatherService.js';
 const router = Router();
 
 // TODO: POST Request with city name to retrieve weather data
-//23/mod/ser/src/rout/tiproutes
 router.post('/', async (req: Request, res: Response) => {
   const { cityName } = req.body;
   try{
-    // if (req.body) {
+    console.log(cityName);
       const weatherResponse = await WeatherService.getWeatherForCity(cityName);
       res.json(weatherResponse);
-      console.log (weatherResponse);
-    // } else {
-    //   res.send(`Error requesting city`);
-    // }
+      console.log ("ding", weatherResponse);
   } catch (err) { console.log (`Error`, err)}
 });
 
